@@ -19,7 +19,7 @@ El paquete `gpt_dialog` requiere las siguientes librerías:
 * `python-dotenv`
 Puedes instalar estos requisitos utilizando el siguiente comando:
 ```bash
-pip install -r src/requiremnts.txt
+pip install -r src/requirements.txt
 ```
 
 Además, necesitarás una API key de OpenAI para utilizar el paquete. Asegúrate de configurar tu API key correctamente antes de utilizar el paquete.
