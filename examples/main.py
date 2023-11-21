@@ -4,12 +4,11 @@ from dotenv import load_dotenv
 
 from gpt_dialogs.gpt_groups import ChatBotGroups
 
-load_dotenv(".env")
+load_dotenv("../src/.env")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 NUMBER = 3
 MODEL_TYPE = "gpt-3.5-turbo"
-SYSTEM_MESSAGE_BOTS = "Perteneces a un grupo de expertos con puntos de vista diversos y que deben llegar a una conclusión."
 ITERATIONS = 1
 
 if __name__ == "__main__":
