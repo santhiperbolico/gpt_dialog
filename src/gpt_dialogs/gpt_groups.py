@@ -91,11 +91,13 @@ class ChatBotGroups:
             for bot in self.chatbot_list:
                 content = bot.chat(iteration_message)
                 content = f"El asistente {bot.name} dice: {content}"
-                iteration_message.append({"role": "user", "content": content})
                 if verbose:
                     print(content)
+                iteration_message.append({"role": "user", "content": content})
+                if len(iteration_message) > len(self.chatbot_list) - 1:
+                    iteration_message.remove(iteration_message[0])
+
             messages_list = messages_list + iteration_message
-            iteration_message = []
 
         messages_list = messages_list + [
             {"role": "user", "content": f"Qué conclusión sacas sobre la cuestión: {question}"}]
