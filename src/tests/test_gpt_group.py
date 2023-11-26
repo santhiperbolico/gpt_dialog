@@ -69,7 +69,7 @@ def test_launch_debate(chat_bot_gpt_mock_1, chat_bot_gpt_mock_2):
     group = ChatBotGroups(chatbot_list=chatbot_list_mock)
     message_list = group.launch_debate("¿Esto es un test?", iterations=2)
     for i in range(4):
-        expected_message = f"Assistant bot_{i%2}: Es una respuesta test del asistente {i%2}"
+        expected_message = f"Assistant bot_{i % 2}: Es una respuesta test del asistente {i % 2}"
         message = message_list[i + 1]
         assert message.get("content") == expected_message
     assert message_list[0].get("content") == "¿Esto es un test?"
