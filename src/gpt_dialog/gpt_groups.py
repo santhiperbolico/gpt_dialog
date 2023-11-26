@@ -1,9 +1,8 @@
 from typing import List
 
-from attr import attrs, attrib
+from attr import attrib, attrs
 
 from gpt_dialog.gpt_bot import ChatBotGPT
-
 
 SYSTEM_MESSAGE_MODERATOR = """
 Eres el responsable de tomar una decisión o dar una respuesta a una cuestión importante.
@@ -11,7 +10,10 @@ Para ello te has rodeado de varios asistentes que te van a dar pistas para dar u
 Después de escuharles te pedirán una respuesta.
 """
 
-SYSTEM_MESSAGE_BOTS = "Pertenecéis a un grupo de expertos que tenéis que asesorar sobre una cuestión de una manera diversa."
+SYSTEM_MESSAGE_BOTS = (
+    "Pertenecéis a un grupo de expertos que tenéis que asesorar "
+    "sobre una cuestión de una manera diversa."
+)
 
 
 @attrs
@@ -23,13 +25,7 @@ class ChatBotGroups:
     chatbot_list = attrib(type=List[ChatBotGPT], init=True, default=[])
     moderator = attrib(type=ChatBotGPT, init=False)
 
-    def add_bot(
-            self,
-            name: str,
-            model_type: str,
-            system_message: str = None,
-            api_key: str = None
-    ):
+    def add_bot(self, name: str, model_type: str, system_message: str = None, api_key: str = None):
         """
         Método que añade un bot a la lista del rupo de bots.
 
@@ -49,13 +45,13 @@ class ChatBotGroups:
         self.chatbot_list.append(chat_bot)
 
     def launch_debate(
-            self,
-            question: str,
-            model_type: str,
-            system_message: str = None,
-            api_key: str = None,
-            iterations: str = 10,
-            verbose: bool = False
+        self,
+        question: str,
+        model_type: str,
+        system_message: str = None,
+        api_key: str = None,
+        iterations: str = 10,
+        verbose: bool = False,
     ):
         """
         Método que lanza un debate dada una cuestión y el moderado va a sacar una conclusión.
@@ -86,7 +82,8 @@ class ChatBotGroups:
         self.init_bots(question, model_type, system_message, api_key)
         messages_list = []
         iteration_message = [
-            {"role": "user", "content": "Comienza el debate con tu primera respuesta."}]
+            {"role": "user", "content": "Comienza el debate con tu primera respuesta."}
+        ]
         for iteration in range(iterations):
             for bot in self.chatbot_list:
                 content = bot.chat(iteration_message)
@@ -100,18 +97,15 @@ class ChatBotGroups:
             messages_list = messages_list + iteration_message
 
         messages_list = messages_list + [
-            {"role": "user", "content": f"Qué conclusión sacas sobre la cuestión: {question}"}]
+            {"role": "user", "content": f"Qué conclusión sacas sobre la cuestión: {question}"}
+        ]
         conclusion = self.moderator.chat(messages_list)
         if verbose:
             print(f"Moderador: {conclusion}")
         return conclusion
 
     def init_bots(
-            self,
-            question: str,
-            model_type: str,
-            system_message: str = None,
-            api_key: str = None
+        self, question: str, model_type: str, system_message: str = None, api_key: str = None
     ):
         """
         Método que inicializa los bots que van a debatir.
@@ -139,11 +133,7 @@ class ChatBotGroups:
 
     @classmethod
     def create_bots(
-            cls,
-            number: int,
-            model_type: str,
-            system_message: str = None,
-            api_key: str = None
+        cls, number: int, model_type: str, system_message: str = None, api_key: str = None
     ):
         """
         Método que crea un grupo de bots con el mismo patrón.

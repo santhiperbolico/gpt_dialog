@@ -2,7 +2,7 @@ import os
 from typing import Dict, List, Union
 
 import openai
-from attr import attrs, attrib
+from attr import attrib, attrs
 
 
 @attrs
@@ -16,12 +16,7 @@ class ChatBotGPT:
     client = attrib(type=openai.OpenAI, init=False)
     list_messages = attrib(type=List[Dict[str, str]], init=False)
 
-    def start_chat(
-            self,
-            model_type: str,
-            system_message: str = None,
-            api_key: str = None
-    ) -> None:
+    def start_chat(self, model_type: str, system_message: str = None, api_key: str = None) -> None:
         """
         Método que limpia el histórico de la conversación y genera un nuevo bot.
 
@@ -41,7 +36,7 @@ class ChatBotGPT:
         api_key = api_key or os.getenv("OPENAI_API_KEY")
         self.client = openai.OpenAI(api_key=api_key)
 
-    def chat(self, message:  Union[List[Dict[str, str]], str]) -> str:
+    def chat(self, message: Union[List[Dict[str, str]], str]) -> str:
         """
         Método que le pasa un mensaje al bot generado.
 
@@ -59,18 +54,18 @@ class ChatBotGPT:
             message = [{"role": "user", "content": message}]
         self.list_messages = self.list_messages + message
         completion = self.client.chat.completions.create(
-            model=self.model_type,
-            messages=self.list_messages
+            model=self.model_type, messages=self.list_messages
         )
         assistant_message = completion.choices[0].message.content
         self.list_messages.append({"role": "assistant", "content": assistant_message})
         return assistant_message
 
     def conversations(
-            self, model_type: str = None,
-            system_message: str = None,
-            api_key: str = None,
-            max_chats: int = 10000
+        self,
+        model_type: str = None,
+        system_message: str = None,
+        api_key: str = None,
+        max_chats: int = 10000,
     ) -> None:
         """
         Método que genera un bucle de convesación
