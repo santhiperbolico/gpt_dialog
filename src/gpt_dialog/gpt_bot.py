@@ -1,3 +1,4 @@
+import logging
 import os
 from typing import Dict, List, Union
 
@@ -86,4 +87,4 @@ class ChatBotGPT:
         for _ in range(max_chats):
             message = input("Tu: ")
             assistant_message = self.chat(message)
-            print(f"Assistant {self.name}: {assistant_message}")
+            logging.info("Assistant %s: %s" % (self.name, assistant_message))
