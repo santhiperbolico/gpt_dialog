@@ -2,7 +2,7 @@ from typing import List
 
 from attr import attrs, attrib
 
-from gpt_dialogs.gpt_bot import ChatBotGPT
+from gpt_dialog.gpt_bot import ChatBotGPT
 
 
 SYSTEM_MESSAGE_MODERATOR = """

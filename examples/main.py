@@ -2,8 +2,8 @@ import os
 
 from dotenv import load_dotenv
 
-from gpt_dialogs.gpt_groups import ChatBotGroups
-from gpt_dialogs.gpt_bot import ChatBotGPT
+from gpt_dialog.gpt_groups import ChatBotGroups
+from gpt_dialog.gpt_bot import ChatBotGPT
 
 load_dotenv("../src/.env")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
