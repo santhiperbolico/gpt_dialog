@@ -4,7 +4,10 @@ El paquete `gpt_dialog` facilita la creación de bots basados en modelos GPT cap
 
 ## Instalación
 
-Para instalar el paquete, clona el repositorio y crea un entorno virtual. Asegúrate de tener Python 3.10 instalado en tu entorno.
+Para instalar el paquete dento de un entorno que use `Python>=3.10` es necesario ejecutar la siguiente línea:
+```
+pip install gpt-dialog
+```
 
 # Requisitos
 El paquete `gpt_dialog` requiere las siguientes librerías:
