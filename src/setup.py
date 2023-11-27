@@ -3,9 +3,9 @@ from os import path
 import setuptools
 
 root_dir = path.abspath(path.dirname(path.dirname(__file__)))
-with open("../README.md", "r") as fh:
+with open(path.join(root_dir, "README.md"), "r") as fh:
     long_description = fh.read()
-with open("requirements.txt") as f:
+with open(path.join(root_dir, "src/requirements.txt")) as f:
     requirements = f.read().splitlines()
 
 setuptools.setup(
@@ -13,7 +13,7 @@ setuptools.setup(
     version="0.1.0",
     author="Santiago Arranz Sanz",
     author_email="santiago.arranz.sanz@gmail.com",
-    description="Paquete con elementos para crear dialogos entre bots de GPT "
+    description="Paquete con elementos para crear dialogos entre bots de GPT"
     "basados en la API de OpenAI.",
     long_description=long_description,
     long_description_content_type="text/markdown",
